@@ -12,8 +12,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 
 public class MyTroc_StepDefinitions {
@@ -59,41 +61,51 @@ jeProposePage.bienCheckBox.click();
     @Given("Utilisateur choisit une catégorie pour le bon")
     public void utilisateur_choisit_une_catégorie_pour_le_bon() {
         jeProposePage.categorieDropdown.click();
+        BrowserUtilities.waitFor(2);
+       Select categorieDropdown= new Select(jeProposePage.categorieDropdown);
+        categorieDropdown.selectByVisibleText("Alimentation");
+
+
+
 
     }
 
     @Given("Utilisateur saisit un titre concernant le bon")
     public void utilisateur_saisit_un_titre_concernant_le_bon() {
-//jeProposePage.titreInputBox.sendKeys();
+jeProposePage.titreInputBox.sendKeys("Alimentation");
     }
 
     @Given("Utilisateur saisit une description concernant le bon")
     public void utilisateur_saisit_une_description_concernant_le_bon() {
+        jeProposePage.descriptionInputBox.sendKeys("Alimentation");
 
     }
 
     @Given("Utilisateur saisit un nombre de noisettes supérieur à zéro")
     public void utilisateur_saisit_un_nombre_de_noisettes_supérieur_à_zéro() {
-
+jeProposePage.nosietteInputBox.sendKeys("20");
     }
 
     @Given("Utilisateur clique sur Ajouter")
     public void utilisateur_clique_sur_ajouter() {
+        jeProposePage.ajouterButton.click();
 
     }
 
     @Given("Utilisateur clique sur le lien Mon Profil")
     public void utilisateur_clique_sur_le_lien_mon_profil() {
-
+monProfilPage.monProfilLink.click();
     }
 
     @Given("Utilisateur clique sur le bouton \"es Trocs")
     public void utilisateur_clique_sur_le_bouton_es_trocs() {
-
+monProfilPage.meTrocsButton.click();
     }
 
     @Then("Utilisateur voit ses trocs dans la liste")
     public void utilisateur_voit_ses_trocs_dans_la_liste() {
-
+        String expectedTitre="Alimentation";
+        String actualTitre= monProfilPage.trocTitre.getText();
+        Assert.assertEquals(expectedTitre,actualTitre);
     }
 }

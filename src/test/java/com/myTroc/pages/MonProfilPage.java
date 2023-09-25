@@ -21,8 +21,10 @@ public class MonProfilPage {
     @FindBy(xpath = "//div[.='Mes trocs']")
     public WebElement meTrocsButton;
 
-    @FindBy(xpath = "//span[.='ABCD']")  //text of xpath locator (ABCD) must be the same with troc entre titre
+    @FindBy(xpath = "(//a[@class=\"waves waves-prune\"])[5]")
     public WebElement trocTitre;
+
+
 
 
 }

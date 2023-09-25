@@ -27,7 +27,7 @@ public class JeProposePage {
     public WebElement ajouterButton;
 
 
-    @FindBy(xpath = "//select[@name='cat1-1']")
+    @FindBy(xpath = "(//select[@id='CategoryLvl1'])[1]")
     public WebElement categorieDropdown;
 
     @FindBy(css = "input#price")
